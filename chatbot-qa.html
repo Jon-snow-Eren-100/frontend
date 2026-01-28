@@ -17,36 +17,41 @@
 <button onclick="copyText()">Copy</button>
 
 <script>
-const lang = localStorage.getItem("lang") || "en";
+async function askQuestion() {
+  const question = document.getElementById("question").value;
+  const output = document.getElementById("output");
 
-function startVoice() {
-  const rec = new webkitSpeechRecognition();
-  rec.lang = lang === "ta" ? "ta-IN" : "en-US";
-  rec.onresult = e => {
-    question.value = e.results[0][0].transcript;
-  };
-  rec.start();
-}
+  output.innerText = "Thinking...";
 
-function ask() {
-  fetch("https://ai-learning-backend-1ri3.onrender.com/qa", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      text: question.value,
-      lang: lang
-    })
-  })
-  .then(r => r.json())
-  .then(d => answer.innerText = d.reply);
-}
+  try {
+    const res = await fetch("https://ai-learning-backend-1ri3.onrender.com/qa", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        text: question,
+        lang: "en"
+      })
+    });
 
-function copyText() {
-  navigator.clipboard.writeText(answer.innerText);
-  alert("Copied!");
+    const data = await res.json();
+    console.log("API RESPONSE:", data);
+
+    if (data && data.answer) {
+      output.innerText = data.answer;
+    } else {
+      output.innerText = "No answer received";
+    }
+
+  } catch (err) {
+    console.error(err);
+    output.innerText = "Try again";
+  }
 }
 </script>
 
 </body>
 </html>
+
 
