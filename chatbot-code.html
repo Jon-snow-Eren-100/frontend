@@ -16,7 +16,7 @@
 
 <script>
 function gen() {
-  fetch("http://localhost:3000/code", {
+  fetch("https://ai-learning-backend-1ri3.onrender.com/code", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ text: prompt.value })
@@ -33,3 +33,4 @@ function copy() {
 
 </body>
 </html>
+
