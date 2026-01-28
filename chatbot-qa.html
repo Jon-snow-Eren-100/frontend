@@ -38,7 +38,7 @@ async function askQuestion() {
     const data = await res.json();
     console.log("API RESPONSE:", data);
 
-    output.innerText = data.answer || "No answer received";
+    output.innerText = data.answer || data.reply || "No answer received";
 
   } catch (err) {
     console.error(err);
@@ -59,3 +59,4 @@ function startVoice() {
 
 </body>
 </html>
+
