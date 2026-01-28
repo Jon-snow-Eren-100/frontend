@@ -1,0 +1,68 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #0f0f1a;
+  color: white;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.header h1 {
+  font-size: 3rem;
+  background: linear-gradient(90deg, red, violet, green, hotpink);
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: glow 3s infinite alternate;
+}
+
+@keyframes glow {
+  from { filter: brightness(1); }
+  to { filter: brightness(1.5); }
+}
+
+.header select {
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+/* Cards */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  padding: 40px;
+}
+
+.card {
+  padding: 30px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  animation: float 3s ease-in-out infinite;
+}
+
+.card:hover {
+  transform: scale(1.1) rotate(1deg);
+  box-shadow: 0 0 30px rgba(255,255,255,0.4);
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* Colors */
+.red { background: linear-gradient(135deg, #ff4b4b, #ff7676); }
+.violet { background: linear-gradient(135deg, #8b5cf6, #a78bfa); }
+.green { background: linear-gradient(135deg, #22c55e, #4ade80); }
+.rose { background: linear-gradient(135deg, #f43f5e, #fb7185); }

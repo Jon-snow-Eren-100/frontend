@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Learning Hub</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <h1>AI Learning Hub</h1>
+    <p>Voice & Chatbot Based Coding Learning Platform</p>
+
+    <select id="langSelect">
+      <option value="en">English</option>
+      <option value="ta">Tamil (Tanglish)</option>
+    </select>
+  </header>
+
+  <!-- Main Options -->
+  <section class="cards">
+
+    <div class="card violet" onclick="go('chatbot-qa.html')">
+      <h2>AI Coding Tutor</h2>
+      <p>Ask any coding doubt with voice</p>
+    </div>
+
+    <div class="card green" onclick="go('chatbot-code.html')">
+      <h2>Prompt → Code</h2>
+      <p>Describe website, get code</p>
+    </div>
+
+    <div class="card rose" onclick="go('w3.html')">
+      <h2>W3Schools Topics</h2>
+      <p>All coding languages & topics</p>
+    </div>
+
+    <div class="card red" onclick="go('youtube.html')">
+      <h2>YouTube Learning</h2>
+      <p>Topic-based video learning</p>
+    </div>
+
+  </section>
+
+<script src="app.js"></script>
+</body>
+</html>

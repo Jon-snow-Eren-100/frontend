@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Coding Tutor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>AI Coding Tutor</h2>
+
+<textarea id="question" placeholder="Ask coding doubt..."></textarea>
+
+<button onclick="startVoice()">🎤 Voice</button>
+<button onclick="ask()">Ask</button>
+
+<pre id="answer"></pre>
+<button onclick="copyText()">Copy</button>
+
+<script>
+const lang = localStorage.getItem("lang") || "en";
+
+function startVoice() {
+  const rec = new webkitSpeechRecognition();
+  rec.lang = lang === "ta" ? "ta-IN" : "en-US";
+  rec.onresult = e => {
+    question.value = e.results[0][0].transcript;
+  };
+  rec.start();
+}
+
+function ask() {
+  fetch("http://localhost:3000/qa", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      text: question.value,
+      lang: lang
+    })
+  })
+  .then(r => r.json())
+  .then(d => answer.innerText = d.reply);
+}
+
+function copyText() {
+  navigator.clipboard.writeText(answer.innerText);
+  alert("Copied!");
+}
+</script>
+
+</body>
+</html>

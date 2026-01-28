@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Prompt to Code</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Prompt → Code Generator</h2>
+
+<textarea id="prompt" placeholder="Describe website or feature..."></textarea>
+<button onclick="gen()">Generate Code</button>
+
+<pre id="code"></pre>
+<button onclick="copy()">Copy Code</button>
+
+<script>
+function gen() {
+  fetch("http://localhost:3000/code", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ text: prompt.value })
+  })
+  .then(r => r.json())
+  .then(d => code.innerText = d.code);
+}
+
+function copy() {
+  navigator.clipboard.writeText(code.innerText);
+  alert("Code Copied!");
+}
+</script>
+
+</body>
+</html>
