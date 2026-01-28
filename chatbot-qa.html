@@ -29,7 +29,7 @@ function startVoice() {
 }
 
 function ask() {
-  fetch("http://localhost:3000/qa", {
+  fetch("https://ai-learning-backend-1ri3.onrender.com/qa", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -49,3 +49,4 @@ function copyText() {
 
 </body>
 </html>
+
