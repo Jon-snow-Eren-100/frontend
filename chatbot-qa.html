@@ -19,7 +19,7 @@
 <script>
 async function askQuestion() {
   const question = document.getElementById("question").value;
-  const output = document.getElementById("output");
+  const output = document.getElementById("answer");
 
   output.innerText = "Thinking...";
 
@@ -38,21 +38,24 @@ async function askQuestion() {
     const data = await res.json();
     console.log("API RESPONSE:", data);
 
-    if (data && data.answer) {
-      output.innerText = data.answer;
-    } else {
-      output.innerText = "No answer received";
-    }
+    output.innerText = data.answer || "No answer received";
 
   } catch (err) {
     console.error(err);
     output.innerText = "Try again";
   }
 }
+
+function copyText() {
+  const text = document.getElementById("answer").innerText;
+  navigator.clipboard.writeText(text);
+  alert("Copied!");
+}
+
+function startVoice() {
+  alert("Voice feature coming next 🚀");
+}
 </script>
 
 </body>
 </html>
-
-
-
